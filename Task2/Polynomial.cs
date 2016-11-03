@@ -1,21 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Task2
 {
+    /// <summary>
+    /// Class that represent the math polynomial.
+    /// </summary>
     public class Polynomial
     {
+        /// <summary>
+        /// Gets the degree of polynomial.
+        /// </summary>
         public int Degree { get; private set; }
+        /// <summary>
+        /// Gets the coefficients of polynomial.
+        /// </summary>
         public long[] Coefficients { get; private set; }
+        /// <summary>
+        /// Helps to iterate the polynomial.
+        /// </summary>
+        /// <param name="i"> Helps to seek the right coefficient. </param>
+        /// <returns> Returns required coefficient.</returns>
         public long this[int i]
         {
             get { return Coefficients[i]; }
             private set { Coefficients[i] = value; }
         }
-
+        /// <summary>
+        /// Constructors each taking different number of parameters
+        /// for creating a new polynomial.
+        /// </summary>
         public Polynomial(long coefficient1)
         {
             Degree = 1;
@@ -44,14 +60,21 @@ namespace Task2
             Degree = coefficients.Length;//
             Coefficients = coefficients;
         }
-        public Polynomial(Polynomial x)
+        /// <summary>
+        /// Constructor designed to create a new polynomial from an existing one.
+        /// </summary>
+        /// <param name="oldPolynomial"> Polynomial that helps create new one. </param>
+        private Polynomial(Polynomial oldPolynomial)
         {
-            if (ReferenceEquals(x, null)) throw new ArgumentNullException();
-            Degree = x.Degree;
+            if (ReferenceEquals(oldPolynomial, null)) throw new ArgumentNullException();
+            Degree = oldPolynomial.Degree;
             Coefficients = new long[Degree];
-            x.Coefficients.CopyTo(Coefficients, 0);
+            oldPolynomial.Coefficients.CopyTo(Coefficients, 0);
         }
 
+        /// <summary>
+        /// Supply the correct work the Equals method for the polynomial represented in object.
+        /// </summary>
         public override bool Equals(object o)
         {
             if (this is Polynomial && o is Polynomial)
@@ -60,13 +83,18 @@ namespace Task2
             }
             return false;
         }
-        public bool Equals(Polynomial o)
+        /// <summary>
+        /// Supply the correct work the Equals method for the polynomial.
+        /// </summary>
+        /// <param name="secondPolynomial"> Polynomial for comparing.</param>
+        /// <returns> Boolean value depending on the equality of objects.</returns>
+        public bool Equals(Polynomial secondPolynomial)
         {
-            if (o.Degree != this.Degree)
+            if (secondPolynomial.Degree != this.Degree)
             {
-                if (this.Degree > o.Degree)
+                if (this.Degree > secondPolynomial.Degree)
                 {
-                    for (int i = this.Degree - 1; i > this.Degree - o.Degree; i--)
+                    for (int i = this.Degree - 1; i > this.Degree - secondPolynomial.Degree; i--)
                     {
                         if (this.Coefficients[i] != 0)
                             return false;
@@ -75,23 +103,25 @@ namespace Task2
                 else
                 {
 
-                    for (int i = o.Degree - 1; i > o.Degree - this.Degree; i--)
+                    for (int i = secondPolynomial.Degree - 1; i > secondPolynomial.Degree - this.Degree; i--)
                     {
-                        if (o.Coefficients[i] != 0)
+                        if (secondPolynomial.Coefficients[i] != 0)
                             return false;
                     }
 
                 }
             }
-            //Degree
-
-            for (int i = 0; i < (this.Degree > o.Degree ? o.Degree : this.Degree); i++)
+            
+            for (int i = 0; i < (this.Degree > secondPolynomial.Degree ? secondPolynomial.Degree : this.Degree); i++)
             {
-                if (this.Coefficients[i] != o.Coefficients[i])
+                if (this.Coefficients[i] != secondPolynomial.Coefficients[i])
                     return false;
             }
             return true;
         }
+        /// <summary>
+        /// Returns the hash code for this polynomial.
+        /// </summary>
         public override int GetHashCode()
         {
             int hash = 0;
@@ -101,7 +131,9 @@ namespace Task2
             }
             return hash;
         }
-
+        /// <summary>
+        /// Returns a string that represents the polynomial.
+        /// </summary>
         public override string ToString()
         {
             StringBuilder s = new StringBuilder();
@@ -114,21 +146,12 @@ namespace Task2
                 if (i > 0)
                 {
                     if (x > 0)
-                    {
-                        //s.Append(x);
                         s.Append($"{x}x^{i} + ");
-                    }
                     else
-                    {
-
-                        //s.Append(x);
                         s.Append($"({x}x^{i}) + ");
-                    }
-
-
                 }
                 else
-                    s.Append($"{x}x^{i}");
+                    s.Append($"{x}");
 
                 i--;
             }
@@ -136,7 +159,9 @@ namespace Task2
             return s.ToString();
         }
 
-
+        /// <summary>
+        /// Operators overloading which enable to properly use the operators for working with polynomials.
+        /// </summary>
         public static bool operator ==(Polynomial a, Polynomial b)
         {
             if (a.Degree != b.Degree)
@@ -160,7 +185,6 @@ namespace Task2
 
                 }
             }
-            //Degree
             for (int i = 0; i < (a.Degree > b.Degree ? b.Degree : a.Degree); i++)
             {
                 if (b.Coefficients[i] != a.Coefficients[i])
@@ -168,45 +192,16 @@ namespace Task2
             }
             return true;
         }
-        public static bool operator !=(Polynomial a, Polynomial b)
-        {
-            if (a.Degree != b.Degree)
-            {
-                if (b.Degree > a.Degree)
-                {
-                    for (int i = b.Degree - 1; i > b.Degree - a.Degree; i--)
-                    {
-                        if (b.Coefficients[i] != 0)
-                            return true;
-                    }
-                }
-                else
-                {
-
-                    for (int i = a.Degree - 1; i > a.Degree - b.Degree; i--)
-                    {
-                        if (a.Coefficients[i] != 0)
-                            return true;
-                    }
-
-                }
-            }
-            //Degree
-            for (int i = 0; i < (a.Degree > b.Degree ? b.Degree : a.Degree); i++)
-            {
-                if (b.Coefficients[i] != a.Coefficients[i])
-                    return true;
-            }
-            return false;
-        }
+        public static bool operator !=(Polynomial a, Polynomial b)=>!(a == b);
+    
         public static Polynomial operator -(Polynomial a, Polynomial b)
         {
             Polynomial c;
-            //int resultDegree = a.Degree > b.Degree ? a.Degree : b.Degree;
+
             if (a.Degree > b.Degree)
             {
                 c = new Polynomial(a);
-                //c = new Polynomial(a.Coefficients);
+
                 for (int i = 0; i < b.Degree; i++)
                 {
                     c[i] -= b[i];
@@ -215,6 +210,7 @@ namespace Task2
             else
             {
                 c = new Polynomial(b);
+
                 for (int i = 0; i < a.Degree; i++)
                 {
                     c[i] -= a[i];
@@ -226,11 +222,11 @@ namespace Task2
         public static Polynomial operator +(Polynomial a, Polynomial b)
         {
             Polynomial c;
-            //int resultDegree = a.Degree > b.Degree ? a.Degree : b.Degree;
+        
             if (a.Degree > b.Degree)
             {
                 c = new Polynomial(a);
-                //c = new Polynomial(a.Coefficients);
+
                 for (int i = 0; i < b.Degree; i++)
                 {
                     c[i] += b[i];
@@ -239,6 +235,7 @@ namespace Task2
             else
             {
                 c = new Polynomial(b);
+
                 for (int i = 0; i < a.Degree; i++)
                 {
                     c[i] += a[i];
@@ -250,10 +247,10 @@ namespace Task2
         public static Polynomial operator *(Polynomial a, Polynomial b)
         {
             Polynomial c;
-            int resultDegree = a.Degree + b.Degree - 1;//TODO
-            var cof = new long[resultDegree];
-            //cof = default(long[]);
-            c = new Polynomial(cof);
+            int resultDegree = a.Degree + b.Degree - 1;
+            var coefficients = new long[resultDegree];
+
+            c = new Polynomial(coefficients);
 
             int bigDegree = a.Degree > b.Degree ? a.Degree : b.Degree;
             int smallDegree = a.Degree < b.Degree ? a.Degree : b.Degree;
@@ -262,16 +259,14 @@ namespace Task2
                 for (int i = 0; i < bigDegree; i++)
                 {
                     for (int j = 0; j < smallDegree; j++)
-                        c[i + j] += b[i] * a[j];//
+                        c[i + j] += b[i] * a[j];
                 }
             else
                 for (int i = 0; i < bigDegree; i++)
                 {
                     for (int j = 0; j < smallDegree; j++)
-                        c[i + j] += a[i] * b[j];//
+                        c[i + j] += a[i] * b[j];
                 }
-
-
 
             return c;
         }

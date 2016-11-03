@@ -1,7 +1,6 @@
 ﻿using System;
-using Task2;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
+
 
 namespace Task2.Tests
 {
@@ -89,9 +88,9 @@ namespace Task2.Tests
             Assert.AreEqual(a.Equals(b),result);
         }
 
-        [TestCase("2x^1 + 1x^0", 1, 2)]
-        [TestCase("3x^2 + 2x^1 + 1x^0", 1, 2, 3)]
-        [TestCase("13x^2 + (-2x^1) + 1x^0", 1, -2, 13)]
+        [TestCase("2x^1 + 1", 1, 2)]
+        [TestCase("3x^2 + 2x^1 + 1", 1, 2, 3)]
+        [TestCase("13x^2 + (-2x^1) + 1", 1, -2, 13)]
         public void PolynomialToString_PolynomialArgs_ExpectedString(string expected, params long[] args)
         {
             Polynomial pol = new Polynomial(args);
