@@ -15,7 +15,7 @@ namespace Task1
         ///  Method that provides sorting, by the law that transmitted by the class implementing the IComparable interface.
         /// </summary>
         /// <param name="jArray"> Input Jagged Array. </param>
-        /// <param name="comparer"> Class implementing the IComparer<int[]> interface and supplied CompareTo method that chooses the way for field sorting.</param>
+        /// <param name="comparer"> Class implementing the IComparer<int[]> interface and supplied Compare method that chooses the way for field sorting.</param>
         public static void SortJaggedArray(int[][] jArray, Comparison<int[]> comparer)
         {
             if (jArray == null || jArray.Any(inner => inner == null) || comparer == null) //tnx ReSharper
@@ -35,7 +35,7 @@ namespace Task1
         {
             if (jArray == null || jArray.Any(inner => inner == null) || comparer == null) //tnx ReSharper
                 throw new ArgumentException();
-            SortJaggedArray(jArray, comparer.CompareTo);
+            SortJaggedArray(jArray, comparer.Compare);
         } 
 
         /// <summary>

@@ -9,6 +9,6 @@ namespace Task1
     public interface IComparer<in T>
     //TODO: Read http://stackoverflow.com/questions/28687446/why-does-reshaper-suggest-me-to-make-type-parameter-t-contravariant
     {
-        int CompareTo(T a, T b);
+        int Compare(T a, T b);
     }
 }

@@ -7,7 +7,7 @@ namespace Task1.Tests
 {
     internal class SumUp : IComparer<int[]>
     {
-        public int CompareTo(int[] a, int[] b)
+        public int Compare(int[] a, int[] b)
         {
             var aSum = a.Sum();
             var bSum = b.Sum();
@@ -20,7 +20,7 @@ namespace Task1.Tests
 
     internal class SumDown : IComparer<int[]>
     {
-        public int CompareTo(int[] a, int[] b)
+        public int Compare(int[] a, int[] b)
         {
             var aSum = a.Sum();
             var bSum = b.Sum();
@@ -33,7 +33,7 @@ namespace Task1.Tests
 
     internal class MaxUp : IComparer<int[]>
     {
-        public int CompareTo(int[] a, int[] b)
+        public int Compare(int[] a, int[] b)
         {
             var aMax = a.Max();
             var bMax = b.Max();
@@ -46,7 +46,7 @@ namespace Task1.Tests
 
     internal class MaxDown : IComparer<int[]>
     {
-        public int CompareTo(int[] a, int[] b)
+        public int Compare(int[] a, int[] b)
         {
             var aMax = a.Max();
             var bMax = b.Max();
@@ -59,7 +59,7 @@ namespace Task1.Tests
 
     internal class MinUp : IComparer<int[]>
     {
-        public int CompareTo(int[] a, int[] b)
+        public int Compare(int[] a, int[] b)
         {
             var aMin = a.Min();
             var bMin = b.Min();
@@ -72,7 +72,7 @@ namespace Task1.Tests
 
     internal class MinDown : IComparer<int[]>
     {
-        public int CompareTo(int[] a, int[] b)
+        public int Compare(int[] a, int[] b)
         {
             var aMin = a.Min();
             var bMin = b.Min();
