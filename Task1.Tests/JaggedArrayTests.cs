@@ -84,7 +84,7 @@ namespace Task1.Tests
     }
 
 
-    public class JaggedArrayTests
+    public class JaggedArrayDelegateTests
     {
         //[TestCase(new int[] { 4, 5 },  new int[] { 1, 2, 3 }, new int[] { 1, 2 }, new int[] { 4, 5 })]
         [TestCase(new[] {4, 5}, new[] {1, 2, 3}, new[] {1, 2}, new[] {4, 5})]
@@ -94,7 +94,7 @@ namespace Task1.Tests
         {
             
             var cmp = new SumUp();
-            JaggedArraySorter.SortJaggedArray(jArray, cmp);
+            JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp);
 
             Assert.AreEqual(jArray[0], result);
         }
@@ -105,7 +105,7 @@ namespace Task1.Tests
             params int[][] jArray) //Extended method
         {
             var cmp = new SumDown();
-            JaggedArraySorter.SortJaggedArray(jArray, cmp);
+            JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp);
 
             Assert.AreEqual(jArray[2], result);
         }
@@ -117,7 +117,7 @@ namespace Task1.Tests
         {
            
             var cmp = new MaxUp();
-            JaggedArraySorter.SortJaggedArray(jArray, cmp);
+            JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp);
 
             Assert.AreEqual(jArray[0], result);
         }
@@ -128,7 +128,7 @@ namespace Task1.Tests
             params int[][] jArray) //Extended method
         {
             var cmp = new MaxDown();
-            JaggedArraySorter.SortJaggedArray(jArray, cmp);
+            JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp);
 
             Assert.AreEqual(jArray[2], result);
         }
@@ -139,18 +139,18 @@ namespace Task1.Tests
             params int[][] jArray) //Extended method
         {
             var cmp = new MinUp();
-            JaggedArraySorter.SortJaggedArray(jArray, cmp);
+            JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp);
 
             Assert.AreEqual(jArray[0], result);
         }
 
-        [TestCase(new[] {1, 2, 3}, new[] {1, 2, 3}, new[] {2, 1}, new[] {4, 5})]
+        [TestCase(new[] {2, 1}, new[] {1, 2, 3}, new[] {2, 1}, new[] {4, 5})]
         [TestCase(new[] {4, 1}, new[] {1, 4, 3}, new[] {8, 2}, new[] {4, 1})]
         public static void SortJaggedArray_MinDown_RightArrayInTheLastIndexOfJaggedArray(int[] result,
             params int[][] jArray) //Extended method
         {
             var cmp = new MinDown();
-            JaggedArraySorter.SortJaggedArray(jArray, cmp);
+            JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp);
 
             Assert.AreEqual(jArray[2], result);
         }
@@ -161,7 +161,7 @@ namespace Task1.Tests
         public static void ChangeAndSortTest_BadParams_Exception(params int[][] jArray)
         {
             var cmp = new MinDown();
-            Assert.That(() => JaggedArraySorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
         }
 
 
@@ -169,7 +169,7 @@ namespace Task1.Tests
         public static void ChangeAndSortTest_NullArray_Exception(int[][] jArray)
         {
             var cmp = new MinDown();
-            Assert.That(() => JaggedArraySorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
         }
 
         [TestCase(null)]
@@ -177,7 +177,104 @@ namespace Task1.Tests
         {
             SumUp cmp = null;
 
-            Assert.That(() => JaggedArraySorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => JaggedArrayDelegateSorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
+        }
+    }
+
+    public class JaggedArrayInterfaceTests
+    {
+        //[TestCase(new int[] { 4, 5 },  new int[] { 1, 2, 3 }, new int[] { 1, 2 }, new int[] { 4, 5 })]
+        [TestCase(new[] { 4, 5 }, new[] { 1, 2, 3 }, new[] { 1, 2 }, new[] { 4, 5 })]
+        [TestCase(new[] { 8, 2 }, new[] { 1, 4, 3 }, new[] { 8, 2 }, new[] { 4, 1 })]
+        public static void SortJaggedArray_SumUp_RightArrayInTheFirstIndexOfJaggedArray(int[] result,
+            params int[][] jArray) //Extended method
+        {
+
+            var cmp = new SumUp();
+            JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp);
+
+            Assert.AreEqual(jArray[0], result);
+        }
+
+        [TestCase(new[] { 4, 5 }, new[] { 1, 2, 3 }, new[] { 2, 1 }, new[] { 4, 5 })]
+        [TestCase(new[] { 8, 2 }, new[] { 1, 4, 3 }, new[] { 8, 2 }, new[] { 4, 1 })]
+        public static void SortJaggedArray_SumDown_RightArrayInTheLastIndexOfJaggedArray(int[] result,
+            params int[][] jArray) //Extended method
+        {
+            var cmp = new SumDown();
+            JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp);
+
+            Assert.AreEqual(jArray[2], result);
+        }
+
+        [TestCase(new[] { 4, 5 }, new[] { 1, 2, 3 }, new[] { 2, 1 }, new[] { 4, 5 })]
+        [TestCase(new[] { 8, 2 }, new[] { 1, 4, 3 }, new[] { 8, 2 }, new[] { 4, 1 })]
+        public static void SortJaggedArray_MaxUp_RightArrayInTheFirstIndexOfJaggedArray(int[] result,
+            params int[][] jArray) //Extended method
+        {
+
+            var cmp = new MaxUp();
+            JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp);
+
+            Assert.AreEqual(jArray[0], result);
+        }
+
+        [TestCase(new[] { 4, 5 }, new[] { 1, 2, 3 }, new[] { 2, 1 }, new[] { 4, 5 })]
+        [TestCase(new[] { 8, 2 }, new[] { 1, 4, 3 }, new[] { 8, 2 }, new[] { 4, 1 })]
+        public static void SortJaggedArray_MaxDown_RightArrayInTheLastIndexOfJaggedArray(int[] result,
+            params int[][] jArray) //Extended method
+        {
+            var cmp = new MaxDown();
+            JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp);
+
+            Assert.AreEqual(jArray[2], result);
+        }
+
+        [TestCase(new[] { 1, 2, 3 }, new[] { 1, 2, 3 }, new[] { 2, 1 }, new[] { 4, 5 })]
+        [TestCase(new[] { 4, 1 }, new[] { 1, 4, 3 }, new[] { 8, 2 }, new[] { 4, 1 })]
+        public static void SortJaggedArray_MinUp_RightArrayInTheFirstIndexOfJaggedArray(int[] result,
+            params int[][] jArray) //Extended method
+        {
+            var cmp = new MinUp();
+            JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp);
+
+            Assert.AreEqual(jArray[0], result);
+        }
+
+        [TestCase(new[] { 2, 1 }, new[] { 1, 2, 3 }, new[] { 2, 1 }, new[] { 4, 5 })]
+        [TestCase(new[] { 4, 1 }, new[] { 1, 4, 3 }, new[] { 8, 2 }, new[] { 4, 1 })]
+        public static void SortJaggedArray_MinDown_RightArrayInTheLastIndexOfJaggedArray(int[] result,
+            params int[][] jArray) //Extended method
+        {
+            var cmp = new MinDown();
+            JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp);
+
+            Assert.AreEqual(jArray[2], result);
+        }
+
+
+        [TestCase(null, new[] { 1, 2, 3 }, new[] { 1, 2 }, new[] { 4, 5 })]
+        [TestCase(new[] { 1, 4, 3 }, new[] { 2, 8 }, null)]
+        public static void ChangeAndSortTest_BadParams_Exception(params int[][] jArray)
+        {
+            var cmp = new MinDown();
+            Assert.That(() => JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
+        }
+
+
+        [TestCase(null)]
+        public static void ChangeAndSortTest_NullArray_Exception(int[][] jArray)
+        {
+            var cmp = new MinDown();
+            Assert.That(() => JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
+        }
+
+        [TestCase(null)]
+        public static void ChangeAndSortTest_CmpNull_Exception(int[][] jArray)
+        {
+            SumUp cmp = null;
+
+            Assert.That(() => JaggedArrayInterfaceSorter.SortJaggedArray(jArray, cmp), Throws.TypeOf<ArgumentException>());
         }
     }
 }
