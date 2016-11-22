@@ -4,6 +4,10 @@ using System.Linq;
 
 namespace Task1
 {
+    public interface IComparer<T>
+    {
+        int CompareTo(T a, T b);
+    }
     /// <summary>
     /// Class to sort a jagged array fields by the laws passed by the comparator.
     /// </summary>
@@ -11,11 +15,11 @@ namespace Task1
     {
         /// <summary>
         ///     Method that choosing type of logic for sorting.
-        ///  Method that provides sorting, by the law that transmitted by the class implementing the IJagged interface.
+        ///  Method that provides sorting, by the law that transmitted by the class implementing the IComparable interface.
         /// </summary>
         /// <param name="jArray"> Input Jagged Array. </param>
-        /// <param name="comparer"> Class implementing the IJagged interface and supplied CompareTo method that chooses the way for field sorting.</param>
-        public static void SortJaggedArray(int[][] jArray, IJagged comparer)
+        /// <param name="comparer"> Class implementing the IComparable interface and supplied CompareTo method that chooses the way for field sorting.</param>
+        public static void SortJaggedArray(int[][] jArray, IComparer<int[]> comparer)
         {
             if (jArray == null || jArray.Any(inner => inner == null) || comparer == null)//tnx ReSharper
                 throw new ArgumentException();
@@ -29,13 +33,14 @@ namespace Task1
                 }
 
             }
-
-            foreach (var item in jArray)
+            //TODO:Delete
+            /*foreach (var item in jArray)
             {
                 BubbleSort(item);
-            }
+            }*/
 
         }
+        /*//TODO:Delete
         /// <summary>
         ///     Sorts the array.
         /// </summary>
@@ -57,7 +62,7 @@ namespace Task1
                     break;
             }
         }
-
+        */
         /// <summary>
         ///     A method that swaps two fields of the jagged array.
         /// </summary>

@@ -3,3 +3,8 @@ D:\EPAM\NET.W.2016.01.Bulavsky.07\Task2\bin\Debug\Task2.pdb
 D:\EPAM\NET.W.2016.01.Bulavsky.07\Task2\obj\Debug\Task2.csprojResolveAssemblyReference.cache
 D:\EPAM\NET.W.2016.01.Bulavsky.07\Task2\obj\Debug\Task2.dll
 D:\EPAM\NET.W.2016.01.Bulavsky.07\Task2\obj\Debug\Task2.pdb
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task2\bin\Debug\Task2.dll
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task2\bin\Debug\Task2.pdb
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task2\obj\Debug\Task2.csprojResolveAssemblyReference.cache
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task2\obj\Debug\Task2.dll
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task2\obj\Debug\Task2.pdb

@@ -7,3 +7,12 @@ D:\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\obj\Debug\Task1.Tests.dll
 D:\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\obj\Debug\Task1.Tests.pdb
 D:\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\bin\Debug\nunit.framework.dll
 D:\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\bin\Debug\nunit.framework.xml
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\obj\Debug\Task1.Tests.csprojResolveAssemblyReference.cache
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\obj\Debug\Task1.Tests.dll
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\obj\Debug\Task1.Tests.pdb
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\bin\Debug\Task1.Tests.dll
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\bin\Debug\Task1.Tests.pdb
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\bin\Debug\nunit.framework.dll
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\bin\Debug\Task1.dll
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\bin\Debug\Task1.pdb
+C:\Home\EPAM\NET.W.2016.01.Bulavsky.07\Task1.Tests\bin\Debug\nunit.framework.xml
