@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Task1
 {
+    //TODO: Cng xml
     /// <summary>
     /// Class to sort a jagged array fields by the laws passed by the comparator.
     /// </summary>
